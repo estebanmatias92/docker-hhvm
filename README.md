@@ -1,3 +1,3 @@
-# docker-hhvm
+# estebanmatias92/hhvm
 
 HHVM base image.
