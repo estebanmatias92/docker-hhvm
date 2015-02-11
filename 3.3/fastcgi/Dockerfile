@@ -3,6 +3,10 @@ FROM debian:jessie
 MAINTAINER "Matias Esteban" <estebanmatias92@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
+
+ENV PHP_INI_DIR /etc/hhvm
+RUN mkdir $PHP_INI_DIR
+
 ENV HHVM_VERSION HHVM-3.3.3
 
 # Install dependencies
@@ -44,6 +48,9 @@ RUN /usr/bin/update-alternatives --install /usr/bin/php php /usr/local/bin/hhvm 
 
 # Copy config files
 COPY config/hhvm/php.ini /etc/hhvm/php.ini
+
+# Scripts
+COPY hhvm-ext-* /usr/local/bin/
 
 # Forward error logs to the container log devices
 RUN ln -sf /dev/stderr /var/log/hhvm/error.log
