@@ -49,6 +49,7 @@ RUN /usr/bin/update-alternatives --install /usr/bin/php php /usr/local/bin/hhvm 
 
 # Scripts
 COPY hhvm-ext-* /usr/local/bin/
+RUN chmod +x /usr/local/bin/hhvm-ext-*
 
 ENTRYPOINT ["/usr/local/bin/hhvm"]
 

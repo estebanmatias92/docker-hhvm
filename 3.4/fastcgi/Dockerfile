@@ -51,6 +51,7 @@ COPY config/hhvm/php.ini $PHP_INI_DIR/
 
 # Scripts
 COPY hhvm-ext-* /usr/local/bin/
+RUN chmod +x /usr/local/bin/hhvm-ext-*
 
 WORKDIR /var/www
 
