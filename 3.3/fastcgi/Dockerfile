@@ -47,13 +47,10 @@ RUN git clone git://github.com/facebook/hhvm.git /tmp/hhvm \
 RUN /usr/bin/update-alternatives --install /usr/bin/php php /usr/local/bin/hhvm 60
 
 # Copy config files
-COPY config/hhvm/php.ini /etc/hhvm/php.ini
+COPY config/hhvm/php.ini $PHP_INI_DIR/php.ini
 
 # Scripts
 COPY hhvm-ext-* /usr/local/bin/
-
-# Forward error logs to the container log devices
-RUN ln -sf /dev/stderr /var/log/hhvm/error.log
 
 WORKDIR /var/www
 
