@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+# Set local vars
+extensions_dir="$PHP_INI_DIR/extensions"
+php_ini="$PHP_INI_DIR/php.ini"
+
 usage() {
     echo "usage: $0 repository-name [repository-name ...]"
     echo "   ie: $0 mongofill/mongofill-hhvm PocketRent/hhvm-pgsql"
@@ -27,9 +31,9 @@ install() {
         && cmake . \
         && make \
         && filename="$(get_file_by_extension so)"
-        && mv $filename $PHP_INI_DIR/extensions \
+        && mv $filename $extensions_dir \
         && extension="$(cut_filename_extension $filename)"
-        && echo "hhvm.dynamic_extensions[$extension] = $filename" >> $PHP_INI \
+        && echo "hhvm.dynamic_extensions[$extension] = $filename" >> $php_ini \
         && rm -rf $(pwd) \
         && cd -
 }
@@ -64,7 +68,11 @@ buildDeps="git-core"
 apt-get update -y
 apt-get install -y --no-install-recommends $buildDeps
 rm -rf /var/lib/apt/lists/*
-mkdir $PHP_INI_DIR/extensions
+
+# Create configuration files and add settings
+mkdir -p $extensions_dir
+touch $php_ini
+echo "hhvm.dynamic_extension_path = \"$extensions_dir\"" >> $php_ini
 
 for repository in "${repositories[@]}"; do
     install $repository
