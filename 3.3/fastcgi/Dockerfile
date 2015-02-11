@@ -47,7 +47,7 @@ RUN git clone git://github.com/facebook/hhvm.git /tmp/hhvm \
 RUN /usr/bin/update-alternatives --install /usr/bin/php php /usr/local/bin/hhvm 60
 
 # Copy config files
-COPY config/hhvm/php.ini $PHP_INI_DIR/php.ini
+COPY config/hhvm/php.ini $PHP_INI_DIR/
 
 # Scripts
 COPY hhvm-ext-* /usr/local/bin/
