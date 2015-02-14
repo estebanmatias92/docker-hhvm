@@ -51,6 +51,17 @@ RUN /usr/bin/update-alternatives --install /usr/bin/php php /usr/local/bin/hhvm 
 COPY hhvm-ext-* /usr/local/bin/
 RUN chmod +x /usr/local/bin/hhvm-ext-*
 
+# Install "dockerize" http://github.com/jwilder/dockerize
+RUN buildDeps=' \
+        wget \
+    ' \
+    && apt-get install -y $buildDeps \
+    && rm -rf /var/lib/apt/lists/* \
+    && wget --no-check-certificate -O /tmp/dockerize.tar.gz https://github.com/jwilder/dockerize/releases/download/v0.0.2/dockerize-linux-amd64-v0.0.2.tar.gz \
+    && tar -C /usr/local/bin -xvzf /tmp/dockerize.tar.gz \
+    && rm /tmp/dockerize.tar.gz \
+    && apt-get purge --auto-remove -y $buildDeps
+
 ENTRYPOINT ["/usr/local/bin/hhvm"]
 
 CMD ["--help"]
