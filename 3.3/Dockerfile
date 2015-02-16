@@ -9,7 +9,8 @@ RUN mkdir $PHP_INI_DIR
 
 ENV HHVM_VERSION HHVM-3.3.3
 
-RUN apt-get update && apt-get install -y git-core cmake gawk libmysqlclient-dev \
+RUN deps=' \
+        git-core cmake gawk libmysqlclient-dev \
         libxml2-dev libmcrypt-dev libicu-dev openssl build-essential binutils-dev \
         libcap-dev zlib1g-dev libtbb-dev libonig-dev libpcre3-dev \
         autoconf libtool libcurl4-openssl-dev wget memcached \
@@ -28,7 +29,7 @@ RUN apt-get update && apt-get install -y git-core cmake gawk libmysqlclient-dev 
         libmagickwand-dev libiberty-dev libevent-dev libxslt-dev libgoogle-glog-dev \
         automake libldap2-dev libkrb5-dev libyaml-dev ocaml-native-compilers \
     ' \
-    && rm -rf /var/lib/apt/lists/* \
+    && apt-get update && apt-get install -y rm -rf /var/lib/apt/lists/* \
     && git clone git://github.com/facebook/hhvm.git /tmp/hhvm \
     && cd /tmp/hhvm \
     && git checkout tags/${HHVM_VERSION} \
