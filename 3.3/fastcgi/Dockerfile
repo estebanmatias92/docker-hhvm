@@ -18,7 +18,7 @@ RUN deps=' \
         libc-client2007e-dev php5-mcrypt php5-imagick libgoogle-perftools-dev \
         libcloog-ppl-dev libelf-dev libdwarf-dev libunwind8-dev subversion \
         libtbb2 g++-4.8 gcc-4.8 libjemalloc-dev \
-        ibc6-dev libmpfr4 libgcc1 binutils \
+        libc6-dev libmpfr4 libgcc1 binutils \
         libc6 libc-dev-bin libc-bin libgomp1 \
         libstdc++-4.8-dev libstdc++6 \
         libarchive13 cmake-data libacl1 libattr1 \
