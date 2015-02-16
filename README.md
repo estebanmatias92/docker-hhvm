@@ -39,7 +39,7 @@ Then, run the commands to build and run the Docker image:
 
 For many simple, single file projects, you may find it inconvenient to write a complete `Dockerfile`. In such cases, you can run a PHP script by using the HHVM image directly:
 
-       docker run -it --rm --name my-running-script -v "$PWD":/usr/src/myapp -w /usr/src/myapp estebanmatias92/hhvm:3.5-cli your-script.php
+       docker run -it --rm --name my-running-script -v "$PWD":/usr/src/myapp -w /usr/src/myapp estebanmatias92/hhvm:3.5-cli hhvm your-script.php
 
 ## How to install more HHVM extensions
 
