@@ -27,6 +27,7 @@ RUN apt-get update && apt-get install -y git-core cmake gawk libmysqlclient-dev 
         libboost-program-options1.55-dev libboost-filesystem1.55-dev libboost-regex1.55-dev \
         libmagickwand-dev libiberty-dev libevent-dev libxslt-dev libgoogle-glog-dev \
         automake libldap2-dev libkrb5-dev libyaml-dev ocaml-native-compilers \
+    ' \
     && rm -rf /var/lib/apt/lists/* \
     && git clone git://github.com/facebook/hhvm.git /tmp/hhvm \
     && cd /tmp/hhvm \
