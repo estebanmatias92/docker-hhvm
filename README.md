@@ -61,26 +61,6 @@ For example, if you want to have a FastCGI image with [`geoip`](https://github.c
 
 Remember, you must install dependencies for your extensions manually.
 
-## Bonus
-
-This image comes with [`dockerize`](https://github.com/jwilder/dockerize), an utility to dockerize apps easily.
-
-With dockerize you can change any kind of configuration through environment variables and redirect logs to the Docker log collector.
-
-If you want to use it you can write a Dockerfile like this:
-
-       FROM estebanmatias92/hhvm:3.5-fastgi
-       COPY ./config/php.tmpl /var/www/config/
-       ENTRYPOINT [“dockerize”, “-template”, “/var/www/config/php.tmpl:/etc/hhvm/php.ini”, “-stdout”, “/var/log/hhvm/access.log”, “-stderr”, “/var/log/hhvm/error.log”, “/usr/local/bin/hhvm”]
-       CMD [“--mode”, “server”]
-
-If you specifies a placeholder for the server port (hhvm.server.port={{ .Env.SERVER_PORT }} for example) in the template (/var/www/config/php.tmpl), you can change easily the configuration at runtime:
-
-       docker build --force-rm -t my-custom-hhvm .
-       docker run -d -e SERVER_PORT=9001 my-custom-hhvm
-
-For a more in-depth explanation i recommend you to read the [Jason Wilder’s post](http://jasonwilder.com/blog/2014/10/13/a-simple-way-to-dockerize-applications/).
-
 # License
 
 View [license information](https://github.com/facebook/hhvm#license) for the software contained in this image.
