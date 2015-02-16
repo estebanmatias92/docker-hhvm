@@ -7,8 +7,6 @@
 -      [`3.5.0-cli`, `3.5-cli`, `3-cli`, `cli`, `3.5.0`, `3.5`, `3`, `latest` (*3.5/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.5/Dockerfile)
 -      [`3.5.0-fastcgi`, `3.5-fastcgi`, `3-fastcgi`, `fastcgi` (*3.5/fastcgi/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.5/fastcgi/Dockerfile)
 
-Docker nginx base image with dockerize.
-
 # What is HHVM?
 
 HipHop Virtual Machine (HHVM) is a process virtual machine based on just-in-time (JIT) compilation, serving as an execution engine for PHP and Hack programming languages. By using the principle of JIT compilation, executed PHP or Hack code is first transformed into intermediate HipHop bytecode (HHBC), which is then dynamically translated into the x86-64 machine code, optimized and natively executed.
