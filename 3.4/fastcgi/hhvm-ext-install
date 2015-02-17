@@ -30,9 +30,9 @@ install() {
         && hphpize \
         && cmake . \
         && make \
-        && filename="$(get_file_by_extension so)"
+        && filename="$(get_file_by_extension so)" \
         && mv $filename $extensions_dir \
-        && extension="$(cut_filename_extension $filename)"
+        && extension="$(cut_filename_extension $filename)" \
         && echo "hhvm.dynamic_extensions[$extension] = $filename" >> $php_ini \
         && rm -rf $(pwd) \
         && cd -
@@ -65,9 +65,7 @@ fi
 
 # Install hhvm extension from github and its dependencies
 buildDeps="git-core"
-apt-get update -y
-apt-get install -y --no-install-recommends $buildDeps
-rm -rf /var/lib/apt/lists/*
+apt-get update && apt-get install -y --no-install-recommends $buildDeps && rm -rf /var/lib/apt/lists/*
 
 # Create configuration files and add settings
 mkdir -p $extensions_dir
