@@ -12,7 +12,7 @@ usage() {
 }
 
 url_exist() {
-    httpCode="$(curl -o /dev/null --silent --head --write-out '%{http_code}\n' ${1})"
+    local httpCode="$(curl -o /dev/null --silent --head --write-out '%{http_code}\n' ${1})"
 
     if [ "$httpCode" -ge 200 -a "$httpCode" -lt 400 ]; then
         echo "true"
@@ -46,8 +46,8 @@ install() {
 }
 
 # install hhvm extension from github and its dependencies
-builddeps="git-core curl"
-apt-get update && apt-get install -y --no-install-recommends $builddeps && rm -rf /var/lib/apt/lists/*
+buildDeps="git-core curl"
+apt-get update && apt-get install -y --no-install-recommends $buildDeps && rm -rf /var/lib/apt/lists/*
 
 repositories=()
 while [ $# -gt 0 ]; do
