@@ -1,1 +1,79 @@
-/home/matias/dev/docker/hhvm/hhvm-ext-install
+#!/bin/bash
+set -e
+
+# Set local vars
+extensions_dir="$PHP_INI_DIR/extensions"
+php_ini="$PHP_INI_DIR/php.ini"
+
+usage() {
+    echo "usage: $0 repository-name [repository-name ...]"
+    echo "   ie: $0 mongofill/mongofill-hhvm PocketRent/hhvm-pgsql"
+    echo
+}
+
+url_exist() {
+    test $(curl -o /dev/null --silent --head --write-out '%{http_code}\n' ${1}) -eq 200 && return true || return false
+}
+
+get_file_by_extension() {
+    return $(find ./ -regex ".*${1}")
+}
+
+cut_filename_extension() {
+    return $(${1} | cut -d '.' --complement -f2-)
+}
+
+
+install() {
+    git clone ${1} /tmp/hhvm-extension \
+        && cd /tmp/hhvm-extension \
+        && hphpize \
+        && cmake . \
+        && make \
+        && filename="$(get_file_by_extension so)" \
+        && mv $filename $extensions_dir \
+        && extension="$(cut_filename_extension $filename)" \
+        && echo "hhvm.dynamic_extensions[$extension] = $filename" >> $php_ini \
+        && rm -rf $(pwd) \
+        && cd -
+}
+
+repositories=()
+while [ $# -gt 0 ]; do
+    repository="$1"
+    shift
+
+    if [ -z "$repository" ]; then
+        repository="https://github.com/$1.git"
+        continue
+    fi
+
+    if [ ! $(url_exist $repository) ]; then
+        echo >&2 "error: $repository does not exist"
+        echo >&2
+        usage >&2
+        exit 1
+    fi
+
+    repositories+=( "$repository" )
+done
+
+if [ "${#repositories[@]}" -eq 0 ]; then
+    usage >&2
+    exit 1
+fi
+
+# Install hhvm extension from github and its dependencies
+buildDeps="git-core"
+apt-get update && apt-get install -y --no-install-recommends $buildDeps && rm -rf /var/lib/apt/lists/*
+
+# Create configuration files and add settings
+mkdir -p $extensions_dir
+touch $php_ini
+echo "hhvm.dynamic_extension_path = \"$extensions_dir\"" >> $php_ini
+
+for repository in "${repositories[@]}"; do
+    install $repository
+done
+
+apt-get purge --auto-remove -y $buildDeps
