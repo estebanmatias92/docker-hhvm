@@ -38,15 +38,20 @@ install() {
         && cd -
 }
 
+# install hhvm extension from github and its dependencies
+builddeps="git-core curl"
+apt-get update && apt-get install -y --no-install-recommends $builddeps && rm -rf /var/lib/apt/lists/*
+
 repositories=()
 while [ $# -gt 0 ]; do
-    repository="$1"
+    repositoryName="$1"
     shift
 
-    if [ -z "$repository" ]; then
-        repository="https://github.com/$1.git"
+    if [ -z "$repositoryName" ]; then
         continue
     fi
+
+    repository="https://github.com/$repositoryNane.git"
 
     if [ ! $(url_exist $repository) ]; then
         echo >&2 "error: $repository does not exist"
@@ -62,10 +67,6 @@ if [ "${#repositories[@]}" -eq 0 ]; then
     usage >&2
     exit 1
 fi
-
-# Install hhvm extension from github and its dependencies
-buildDeps="git-core"
-apt-get update && apt-get install -y --no-install-recommends $buildDeps && rm -rf /var/lib/apt/lists/*
 
 # Create configuration files and add settings
 mkdir -p $extensions_dir
