@@ -51,7 +51,7 @@ while [ $# -gt 0 ]; do
         continue
     fi
 
-    repository="https://github.com/$repositoryNane.git"
+    repository="https://github.com/$repositoryName.git"
 
     if [ ! $(url_exist $repository) ]; then
         echo >&2 "error: $repository does not exist"
