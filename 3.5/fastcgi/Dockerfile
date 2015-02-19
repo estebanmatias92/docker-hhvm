@@ -47,6 +47,9 @@ COPY config/hhvm/php.ini $PHP_INI_DIR/
 COPY hhvm-ext-* /usr/local/bin/
 RUN chmod +x /usr/local/bin/hhvm-ext-*
 
+# Folder for pid file
+RUN mkdir /var/run/hhvm
+
 EXPOSE 9000
 
 CMD ["hhvm", "--mode", "server"]
