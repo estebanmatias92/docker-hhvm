@@ -47,13 +47,11 @@ As HHVM comes with a [large number of extensions](https://github.com/facebook/hh
 
 So you have to pass the repositories (could be one or many) as argument for `hhvm-ext-install`.
 
-For example, if you want to have a FastCGI image with [`geoip`](https://github.com/vipsoft/hhvm-ext-geoip) extension, you can inheriting the base image that you like, and write your own `Dockerfile` like this:
+For example, if you want to have a FastCGI image with [`pgsql`](https://github.com/vipsoft/hhvm-ext-geoip) extension, you can inheriting the base image that you like, and write your own `Dockerfile` like this:
 
        FROM estebanmatias92/hhvm:3.4-fastcgi
-       RUN apt-get update && apt-get install -y \
-           libgeoip-dev libgeoip1 \
-           && rm -rf /var/lib/apt/lists/* \
-           && hhvm-ext-install vipsoft/hhvm-ext-geoip
+       RUN apt-get update && apt-get install -y libpq-dev && rm -rf /var/lib/apt/lists/* \
+           && hhvm-ext-install PocketRent/hhvm-pgsql
        ENTRYPOINT [“/usr/local/bin/hhvm”]
        CMD [“--mode”, “server”]
 
