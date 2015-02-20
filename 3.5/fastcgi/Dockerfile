@@ -38,6 +38,12 @@ RUN apt-get update && apt-get install -y git-core cmake gawk libmysqlclient-dev 
     && rm -rf $(pwd) \
     && cd -
 
+# Apply patch "https://github.com/facebook/hhvm/wiki/DSO-3.5.0"
+RUN apt-get update && apt-get install -y wget && rm -rf /var/lib/apt/lists/* \
+    && mkdir -p /usr/include/hphp/runtime \
+    && wget -O /usr/include/hphp/runtime/version.h https://raw.githubusercontent.com/facebook/hhvm/HHVM-3.5/hphp/runtime/version.h \
+    && apt-get purge -y --auto-remove wget
+
 # Set hhvm link
 RUN /usr/bin/update-alternatives --install /usr/bin/php php /usr/local/bin/hhvm 60
 
