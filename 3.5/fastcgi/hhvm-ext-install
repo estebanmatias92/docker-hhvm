@@ -21,9 +21,20 @@ url_exist() {
     fi
 }
 
+# Create a build file if does not exist
+create_build_file() {
+    if [ -e "build.sh" ]; then
+        return 0
+    fi
+
+    echo "hphpize && cmake . && make" > build.sh \
+        && chmod +x build.sh
+}
+
+# Get the "extension.so" and store it in $extensions_dir
 store_extension() {
     # Get file by extension
-    local filename="$(find ./ -regex '.*so')"
+    local filename="$(basename $(find ./ -regex '.*so'))"
     
     mv $filename $extensions_dir
 
@@ -37,15 +48,14 @@ store_extension() {
 install() {
     git clone ${1} /tmp/hhvm-extension \
         && cd /tmp/hhvm-extension \
-        && hphpize \
-        && cmake . \
-        && make \
+        && create_build_file \
+        && ./build.sh \
         && store_extension \
         && rm -rf $(pwd) \
         && cd -
 }
 
-# install hhvm extension from github and its dependencies
+# Install hhvm extension from github and its dependencies
 buildDeps="git-core curl"
 apt-get update && apt-get install -y --no-install-recommends $buildDeps && rm -rf /var/lib/apt/lists/*
 
@@ -77,11 +87,12 @@ fi
 
 # Create configuration files and add settings
 mkdir -p $extensions_dir
-touch $php_ini
 echo "hhvm.dynamic_extension_path = \"$extensions_dir\"" >> $php_ini
 
+# Install every repository
 for repository in "${repositories[@]}"; do
     install $repository
 done
 
+# Clean
 apt-get purge --auto-remove -y $buildDeps
