@@ -38,11 +38,8 @@ store_extension() {
     
     mv $filename $extensions_dir
 
-    # Cut filename extension
-    local hhvm_extension="$filename | cut -d '.' --complement -f2-"
-
     # Enable extension
-    echo "hhvm.dynamic_extensions[$hhvm_extension] = $filename" >> $php_ini
+    echo "hhvm.dynamic_extensions[${filename%.so}] = $filename" >> $php_ini
 }
 
 install() {
