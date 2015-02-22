@@ -1,11 +1,11 @@
 # Supported tags and respective `Dockerfile` links
 
--      [`3.3.3-cli`, `3.3-cli`, `3.3.3`, `3.3` (*3.3/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.3/Dockerfile)
--      [`3.3.3-fastcgi`, `3.3-fastcgi` (*3.3/fastcgi/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.3/fastcgi/Dockerfile)
+-      [`3.3.4-cli`, `3.3-cli`, `3.3.4`, `3.3` (*3.3/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.3/Dockerfile)
+-      [`3.3.4-fastcgi`, `3.3-fastcgi` (*3.3/fastcgi/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.3/fastcgi/Dockerfile)
 -      [`3.4.2-cli`, `3.4-cli`, `3.4.2`, `3.4` (*3.4/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.4/Dockerfile)
 -      [`3.4.2-fastcgi`, `3.4-fastcgi` (*3.4/fastcgi/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.4/fastcgi/Dockerfile)
--      [`3.5.0-cli`, `3.5-cli`, `3-cli`, `cli`, `3.5.0`, `3.5`, `3`, `latest` (*3.5/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.5/Dockerfile)
--      [`3.5.0-fastcgi`, `3.5-fastcgi`, `3-fastcgi`, `fastcgi` (*3.5/fastcgi/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.5/fastcgi/Dockerfile)
+-      [`3.5.1-cli`, `3.5-cli`, `3-cli`, `cli`, `3.5.1`, `3.5`, `3`, `latest` (*3.5/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.5/Dockerfile)
+-      [`3.5.1-fastcgi`, `3.5-fastcgi`, `3-fastcgi`, `fastcgi` (*3.5/fastcgi/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.5/fastcgi/Dockerfile)
 
 # What is HHVM?
 
@@ -49,7 +49,7 @@ So you have to pass the repositories (could be one or many) as argument for `hhv
 
 For example, if you want to have a FastCGI image with [`pgsql`](https://github.com/vipsoft/hhvm-ext-geoip) extension, you can inheriting the base image that you like, and write your own `Dockerfile` like this:
 
-       FROM estebanmatias92/hhvm:3.4-fastcgi
+       FROM estebanmatias92/hhvm:3.5-fastcgi
        RUN apt-get update && apt-get install -y libpq-dev && rm -rf /var/lib/apt/lists/* \
            && hhvm-ext-install PocketRent/hhvm-pgsql
        ENTRYPOINT [“/usr/local/bin/hhvm”]
