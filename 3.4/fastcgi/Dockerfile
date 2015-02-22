@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y git-core cmake gawk libmysqlclient-dev 
         libarchive13 cmake-data libacl1 libattr1 \
         g++ cpp gcc make libboost-thread1.55.0 \
         libboost-thread-dev libgd2-xpm-dev \
-        pkg-config libboost-system1.55-dev \
+        pkg-config libboost-system1.55-dev libboost-context1.55-dev \
         libboost-program-options1.55-dev libboost-filesystem1.55-dev libboost-regex1.55-dev \
         libmagickwand-dev libiberty-dev libevent-dev libxslt-dev libgoogle-glog-dev \
         automake libldap2-dev libkrb5-dev libyaml-dev ocaml-native-compilers \
