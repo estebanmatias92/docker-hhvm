@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV PHP_INI_DIR /etc/hhvm/
 RUN mkdir $PHP_INI_DIR
 
-ENV HHVM_VERSION HHVM-3.3.3
+ENV HHVM_VERSION HHVM-3.3.4
 
 RUN apt-get update && apt-get install -y git-core cmake gawk libmysqlclient-dev \
         libxml2-dev libmcrypt-dev libicu-dev openssl build-essential binutils-dev \

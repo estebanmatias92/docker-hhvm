@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV PHP_INI_DIR /etc/hhvm
 RUN mkdir $PHP_INI_DIR
 
-ENV HHVM_VERSION HHVM-3.5.0
+ENV HHVM_VERSION HHVM-3.5.1
 
 RUN apt-get update && apt-get install -y git-core cmake gawk libmysqlclient-dev \
         libxml2-dev libmcrypt-dev libicu-dev openssl build-essential binutils-dev \
@@ -37,12 +37,6 @@ RUN apt-get update && apt-get install -y git-core cmake gawk libmysqlclient-dev 
     && make install \
     && rm -rf $(pwd) \
     && cd -
-
-# Apply patch "https://github.com/facebook/hhvm/wiki/DSO-3.5.0"
-RUN apt-get update && apt-get install -y wget && rm -rf /var/lib/apt/lists/* \
-    && mkdir -p /usr/include/hphp/runtime \
-    && wget -O /usr/include/hphp/runtime/version.h https://raw.githubusercontent.com/facebook/hhvm/HHVM-3.5/hphp/runtime/version.h \
-    && apt-get purge -y --auto-remove wget
 
 # Set hhvm link
 RUN /usr/bin/update-alternatives --install /usr/bin/php php /usr/local/bin/hhvm 60
