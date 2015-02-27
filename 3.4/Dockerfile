@@ -45,4 +45,4 @@ RUN /usr/bin/update-alternatives --install /usr/bin/php php /usr/local/bin/hhvm 
 COPY hhvm-ext-* /usr/local/bin/
 RUN chmod +x /usr/local/bin/hhvm-ext-*
 
-CMD ["hhvm", "--version"]
+CMD ["hhvm", "-a"]
