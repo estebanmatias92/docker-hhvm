@@ -38,7 +38,7 @@ RUN set -x \
     && git checkout tags/${HHVM_VERSION} \
     && git submodule update --init --recursive \
     && cmake . \
-    && make "$(nproc)" \
+    && make \
     && make install \
     && rm -rf $(pwd) \
     && cd -
