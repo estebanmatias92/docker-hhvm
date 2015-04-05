@@ -2,8 +2,6 @@ FROM debian:jessie
 
 MAINTAINER "Matias Esteban" <estebanmatias92@gmail.com>
 
-ENV DEBIAN_FRONTEND noninteractive
-
 # persistent / runtime deps
 RUN apt-get update && apt-get install -y ca-certificates curl cmake gawk libmysqlclient-dev \
         libxml2-dev libmcrypt-dev libicu-dev openssl build-essential binutils-dev \
