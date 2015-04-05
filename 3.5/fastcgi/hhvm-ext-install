@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-# Set local vars
+# set local vars
 extensions_dir="$PHP_INI_DIR/extensions"
 php_ini="$PHP_INI_DIR/php.ini"
 
@@ -21,7 +21,7 @@ url_exist() {
     fi
 }
 
-# Create a build file if does not exist
+# create a build file if does not exist
 create_build_file() {
     if [ -e "build.sh" ]; then
         return 0
@@ -31,14 +31,14 @@ create_build_file() {
         && chmod +x build.sh
 }
 
-# Get the "extension.so" and store it in $extensions_dir
+# get the "extension.so" and store it in $extensions_dir
 store_extension() {
-    # Get file by extension
+    # get file by extension
     local filename="$(basename $(find ./ -regex '.*so'))"
     
     mv $filename $extensions_dir
 
-    # Enable extension
+    # enable extension
     echo "hhvm.dynamic_extensions[${filename%.so}] = $filename" >> $php_ini
 }
 
@@ -51,10 +51,6 @@ install() {
         && rm -rf $(pwd) \
         && cd -
 }
-
-# Install hhvm extension from github and its dependencies
-buildDeps="git-core curl"
-apt-get update && apt-get install -y --no-install-recommends $buildDeps && rm -rf /var/lib/apt/lists/*
 
 repositories=()
 while [ $# -gt 0 ]; do
@@ -82,14 +78,11 @@ if [ "${#repositories[@]}" -eq 0 ]; then
     exit 1
 fi
 
-# Create configuration files and add settings
+# create configuration files and add settings
 mkdir -p $extensions_dir
 echo "hhvm.dynamic_extension_path = \"$extensions_dir\"" >> $php_ini
 
-# Install every repository
+# install every repository
 for repository in "${repositories[@]}"; do
     install $repository
 done
-
-# Clean
-apt-get purge --auto-remove -y $buildDeps
