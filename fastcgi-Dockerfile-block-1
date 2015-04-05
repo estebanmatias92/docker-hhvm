@@ -1,0 +1,7 @@
+COPY config/hhvm/php.ini $PHP_INI_DIR/
+
+RUN mkdir /var/run/hhvm
+
+EXPOSE 9000
+
+CMD ["hhvm", "--mode", "server"]

@@ -7,7 +7,7 @@ php_ini="$PHP_INI_DIR/php.ini"
 
 usage() {
     echo "usage: $0 repository-name [repository-name ...]"
-    echo "   ie: $0 mongofill/mongofill-hhvm PocketRent/hhvm-pgsql"
+    echo "   ie: $0 mongofill/mongofill-hhvm dstelter/hhvm-pgsql"
     echo
 }
 
