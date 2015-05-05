@@ -15,12 +15,12 @@ RUN apt-get update && apt-get install -y ca-certificates curl cmake gawk libmysq
         libc6 libc-dev-bin libc-bin libgomp1 \
         libstdc++-4.8-dev libstdc++6 \
         libarchive13 cmake-data libacl1 libattr1 \
-        g++ cpp gcc libboost-thread1.55.0 \
+        g++ cpp gcc make libboost-thread1.55.0 \
         libboost-thread-dev libgd2-xpm-dev \
-        libboost-system1.55-dev libboost-context1.55-dev \
+        pkg-config libboost-system1.55-dev libboost-context1.55-dev \
         libboost-program-options1.55-dev libboost-filesystem1.55-dev libboost-regex1.55-dev \
         libmagickwand-dev libiberty-dev libevent-dev libxslt-dev libgoogle-glog-dev \
-        automake libldap2-dev libkrb5-dev libyaml-dev ocaml-native-compilers \
+        automake libldap2-dev libkrb5-dev libyaml-dev gperf ocaml-native-compilers \
         --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
