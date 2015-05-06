@@ -37,7 +37,7 @@ RUN set -x \
     && cd /tmp/hhvm \
     && git checkout tags/${HHVM_VERSION} \
     && git submodule update --init --recursive \
-    && cmake . \
+    && cmake . -DMYSQL_UNIX_SOCK_ADDR=/dev/null \
     && make -j"$(nproc)" \
     && make install \
     && make clean \
