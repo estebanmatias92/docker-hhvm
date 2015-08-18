@@ -74,3 +74,4 @@ You are invited to contribute new features, fixes, or updates, large or small. E
 # Disclaimer
 
 If emerge an official HHVM Docker image, this image will be deprecated, and eventually when the current version becomes in the old stable version, it will be removed.
+Update this requires ["jq"](https://stedolan.github.io/jq/) linux package.

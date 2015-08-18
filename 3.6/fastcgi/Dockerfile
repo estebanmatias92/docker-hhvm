@@ -30,7 +30,7 @@ RUN apt-get update && apt-get install -y git-core autoconf gcc libc-dev make pkg
 ENV PHP_INI_DIR /etc/hhvm/
 RUN mkdir $PHP_INI_DIR
 
-ENV HHVM_VERSION HHVM-3.6.2
+ENV HHVM_VERSION HHVM-3.6.5
 
 RUN set -x \
     && git clone git://github.com/facebook/hhvm.git /tmp/hhvm \
