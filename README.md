@@ -4,8 +4,10 @@
 -      [`3.5.1-fastcgi`, `3.5-fastcgi` (*3.5/fastcgi/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.5/fastcgi/Dockerfile)
 -      [`3.6.2-cli`, `3.6-cli`, `3.6.2`, `3.6` (*3.6/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.6/Dockerfile)
 -      [`3.6.2-fastcgi`, `3.6-fastcgi` (*3.6/fastcgi/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.6/fastcgi/Dockerfile)
--      [`3.7.0-cli`, `3.7-cli`, `3-cli`, `cli`, `3.7.0`, `3.7`, `3`, `latest` (*3.7/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.7/Dockerfile)
--      [`3.7.0-fastcgi`, `3.7-fastcgi`, `3-fastcgi`, `fastcgi` (*3.7/fastcgi/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.7/fastcgi/Dockerfile)
+-      [`3.7.0-cli`, `3.7-cli`, `3.7.0`, `3.7` (*3.7/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.7/Dockerfile)
+-      [`3.7.0-fastcgi`, `3.7-fastcgi` (*3.7/fastcgi/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.7/fastcgi/Dockerfile)
+-      [`3.8.1-cli`, `3.8-cli`, `3-cli`, `cli`, `3.8.1`, `3.8`, `3`, `latest` (*3.8/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.8/Dockerfile)
+-      [`3.8.1-fastcgi`, `3.8-fastcgi`, `3-fastcgi`, `fastcgi` (*3.8/fastcgi/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.8/fastcgi/Dockerfile)
 
 # What is HHVM?
 
