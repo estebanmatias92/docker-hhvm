@@ -1,11 +1,11 @@
 # Supported tags and respective `Dockerfile` links
 
--      [`3.5.1-cli`, `3.5-cli`, `3.5.1`, `3.5` (*3.5/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.5/Dockerfile)
--      [`3.5.1-fastcgi`, `3.5-fastcgi` (*3.5/fastcgi/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.5/fastcgi/Dockerfile)
--      [`3.6.2-cli`, `3.6-cli`, `3.6.2`, `3.6` (*3.6/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.6/Dockerfile)
--      [`3.6.2-fastcgi`, `3.6-fastcgi` (*3.6/fastcgi/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.6/fastcgi/Dockerfile)
--      [`3.7.0-cli`, `3.7-cli`, `3-cli`, `cli`, `3.7.0`, `3.7`, `3`, `latest` (*3.7/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.7/Dockerfile)
--      [`3.7.0-fastcgi`, `3.7-fastcgi`, `3-fastcgi`, `fastcgi` (*3.7/fastcgi/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.7/fastcgi/Dockerfile)
+-      [`3.6.5-cli`, `3.6-cli`, `3.6.5`, `3.6` (*3.6/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.6/Dockerfile)
+-      [`3.6.5-fastcgi`, `3.6-fastcgi` (*3.6/fastcgi/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.6/fastcgi/Dockerfile)
+-      [`3.7.3-cli`, `3.7-cli`, `3.7.3`, `3.7` (*3.7/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.7/Dockerfile)
+-      [`3.7.3-fastcgi`, `3.7-fastcgi` (*3.7/fastcgi/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.7/fastcgi/Dockerfile)
+-      [`3.8.1-cli`, `3.8-cli`, `3-cli`, `cli`, `3.8.1`, `3.8`, `3`, `latest` (*3.8/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.8/Dockerfile)
+-      [`3.8.1-fastcgi`, `3.8-fastcgi`, `3-fastcgi`, `fastcgi` (*3.8/fastcgi/Dockerfile*)](https://github.com/estebanmatias92/docker-hhvm/blob/master/3.8/fastcgi/Dockerfile)
 
 # What is HHVM?
 
@@ -23,7 +23,7 @@ For PHP projects run through the command line interface (CLI), you can do the fo
 
 ### Create a `Dockerfile` in your PHP project
 
-       FROM estebanmatias92/hhvm:3.5-cli
+       FROM estebanmatias92/hhvm:3.8-cli
        COPY . /usr/src/myapp
        WORKDIR /usr/src/myapp
        CMD [ "hhvm", "./your-script.php" ]
@@ -37,7 +37,7 @@ Then, run the commands to build and run the Docker image:
 
 For many simple, single file projects, you may find it inconvenient to write a complete `Dockerfile`. In such cases, you can run a PHP script by using the HHVM image directly:
 
-       docker run -it --rm --name my-running-script -v "$PWD":/usr/src/myapp -w /usr/src/myapp estebanmatias92/hhvm:3.5-cli hhvm your-script.php
+       docker run -it --rm --name my-running-script -v "$PWD":/usr/src/myapp -w /usr/src/myapp estebanmatias92/hhvm:3.8-cli hhvm your-script.php
 
 ## How to install more HHVM extensions
 
@@ -49,7 +49,7 @@ So you have to pass the repositories (could be one or many) as argument for `hhv
 
 For example, if you want to have a FastCGI image with [`pgsql`](https://github.com/dstelter/hhvm-pgsql) extension, you can inheriting the base image that you like, and write your own `Dockerfile` like this:
 
-       FROM estebanmatias92/hhvm:3.5-fastcgi
+       FROM estebanmatias92/hhvm:3.7-fastcgi
        RUN apt-get update && apt-get install -y libpq-dev && rm -rf /var/lib/apt/lists/* \
            && hhvm-ext-install dstelter/hhvm-pgsql
        ENTRYPOINT [“/usr/local/bin/hhvm”]
